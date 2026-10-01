@@ -1,31 +1,27 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://dl.bintray.com/giancosta86/Hephaestus'
-        }
+        //TODO! Del this!
+        mavenLocal()
 
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:5.0'
-        classpath 'info.gianlucacosta.aurora:aurora:9.2'
+        classpath 'info.gianlucacosta.aurora:aurora:10.0.0-SNAPSHOT'
     }
 }
-
 
 
 apply plugin: 'scala'
 apply plugin: 'maven'
 apply plugin: 'application'
 
-apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
 
 group 'info.gianlucacosta.asgard'
 archivesBaseName = 'valkyrie'
-version '1.0'
+version '2.0.0-SNAPSHOT'
 
 description = 'Data mining for Farbiges Deutsch'
 
@@ -36,31 +32,11 @@ sourceCompatibility = 1.8
 mainClassName = 'info.gianlucacosta.valkyrie.App'
 
 
-repositories {
-    mavenCentral()
-}
-
-
 dependencies {
-    generatedCompile 'org.scala-lang:scala-library:2.12.3'
-
     compile 'org.scala-lang:scala-library:2.12.3'
 
-    compile 'info.gianlucacosta.asgard:odin:1.0'
+    compile 'info.gianlucacosta.asgard:odin:2.0.0-SNAPSHOT'
 }
-
-
-
-moonLicense {
-    license = apache2
-
-    productInfo {
-        productName = 'Valkyrie'
-        inceptionYear = 2017
-        copyrightHolder = 'Gianluca Costa'
-    }
-}
-
 
 aurora {
     gitHubUser = 'giancosta86'

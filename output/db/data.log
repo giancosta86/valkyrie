@@ -1,0 +1,17 @@
+/*C1*/SET SCHEMA SYSTEM_LOBS
+INSERT INTO BLOCKS VALUES(0,2147483647,0)
+COMMIT
+/*C2*/SET SCHEMA PUBLIC
+create table Adjectives (categories varchar(255) not null, expression varchar(255) not null, pronunciation varchar(255), comparative varchar(255), superlative varchar(255), primary key (categories, expression))
+create table Antonyms (lemmaCategories varchar(255) not null, lemmaExpression varchar(255) not null, antonym varchar(255) not null, primary key (lemmaCategories, lemmaExpression, antonym))
+create table Hypernyms (lemmaCategories varchar(255) not null, lemmaExpression varchar(255) not null, hypernym varchar(255) not null, primary key (lemmaCategories, lemmaExpression, hypernym))
+create table Lemmas (categories varchar(255) not null, expression varchar(255) not null, pronunciation varchar(255), primary key (categories, expression))
+create table Noun_Declension (lemmaCategories varchar(255) not null, lemmaExpression varchar(255) not null, expression varchar(255) not null, key integer not null, primary key (lemmaCategories, lemmaExpression, key))
+create table Nouns (categories varchar(255) not null, expression varchar(255) not null, pronunciation varchar(255), genus integer, primary key (categories, expression))
+create table Syllables (lemmaCategories varchar(255) not null, lemmaExpression varchar(255) not null, syllable varchar(255) not null, index integer not null, primary key (lemmaCategories, lemmaExpression, index))
+create table Synonyms (lemmaCategories varchar(255) not null, lemmaExpression varchar(255) not null, synonym varchar(255) not null, primary key (lemmaCategories, lemmaExpression, synonym))
+create table Verbs (categories varchar(255) not null, expression varchar(255) not null, pronunciation varchar(255), imperatifSingular varchar(255), partizipPerfekt varchar(255), praesens varchar(255), praeteritum varchar(255), primary key (categories, expression))
+alter table Noun_Declension add constraint UK6moigw04yr5xn5gaq7usr94ba unique (lemmaExpression, lemmaCategories, key, expression)
+alter table Syllables add constraint UKarpkbaahhltalxvrlsx1fxue1 unique (lemmaExpression, lemmaCategories, index, syllable)
+alter table Noun_Declension add constraint FKs94k39n0jseki0wp0icv2gii5 foreign key (lemmaCategories, lemmaExpression) references Nouns
+DISCONNECT
