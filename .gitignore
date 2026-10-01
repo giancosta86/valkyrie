@@ -1,8 +1,2 @@
 /.gradle/
-/.idea/
 /build/
-/out/
-/output/
-/*.iml
-
-/src/generated/
